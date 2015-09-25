@@ -6,4 +6,10 @@ class User < ActiveRecord::Base
 
   validates :name,  presence: true
 
+  has_and_belongs_to_many :income_categories
+  has_and_belongs_to_many :expense_categories
+  has_many :income
+  has_many :expense
+  has_many :transactions
+
 end
