@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   resources :dash_boards
+
+  resources :income_categories
+  resources :expense_categories
   # You can have the root of your site routed with "root"
   root 'dash_boards#index'
 

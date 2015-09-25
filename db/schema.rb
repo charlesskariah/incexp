@@ -11,22 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150925072957) do
+ActiveRecord::Schema.define(version: 20150925065608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "expense_categories", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "source"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "expense_categories_users", id: false, force: :cascade do |t|
-    t.integer "user_id",             null: false
-    t.integer "expense_category_id", null: false
-  end
+  add_index "expense_categories", ["user_id"], name: "index_expense_categories_on_user_id", using: :btree
 
   create_table "expenses", force: :cascade do |t|
     t.integer  "user_id"
@@ -41,16 +39,14 @@ ActiveRecord::Schema.define(version: 20150925072957) do
   add_index "expenses", ["user_id"], name: "index_expenses_on_user_id", using: :btree
 
   create_table "income_categories", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "source"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "income_categories_users", id: false, force: :cascade do |t|
-    t.integer "user_id",            null: false
-    t.integer "income_category_id", null: false
-  end
+  add_index "income_categories", ["user_id"], name: "index_income_categories_on_user_id", using: :btree
 
   create_table "incomes", force: :cascade do |t|
     t.integer  "user_id"

@@ -1,0 +1,18 @@
+<h1>My Income Categories</h1>
+<% if @income_categories.present?%>
+  <table>
+    <tr>
+      <td><b>Category Name</b></td>
+      <td><b>Description</b></td>
+    </tr>
+    <% @income_categories.each do |category|%>
+    <tr>
+      <td><%= category.source%></td>
+      <td><%= category.description%></td>
+      <td><%= link_to 'Edit Category',  edit_income_category_path(category) %></td>
+    </tr>
+    <% end%>
+  </table>
+<%else%>
+  <h3>No Income Categories found!!</h3>
+<%end%>
