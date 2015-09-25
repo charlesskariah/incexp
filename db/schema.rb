@@ -11,10 +11,69 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924191042) do
+ActiveRecord::Schema.define(version: 20150925072957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "expense_categories", force: :cascade do |t|
+    t.string   "source"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "expense_categories_users", id: false, force: :cascade do |t|
+    t.integer "user_id",             null: false
+    t.integer "expense_category_id", null: false
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "expense_category_id"
+    t.datetime "date"
+    t.float    "amount"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "expenses", ["expense_category_id"], name: "index_expenses_on_expense_category_id", using: :btree
+  add_index "expenses", ["user_id"], name: "index_expenses_on_user_id", using: :btree
+
+  create_table "income_categories", force: :cascade do |t|
+    t.string   "source"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "income_categories_users", id: false, force: :cascade do |t|
+    t.integer "user_id",            null: false
+    t.integer "income_category_id", null: false
+  end
+
+  create_table "incomes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "income_category_id"
+    t.datetime "date"
+    t.float    "amount"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "incomes", ["income_category_id"], name: "index_incomes_on_income_category_id", using: :btree
+  add_index "incomes", ["user_id"], name: "index_incomes_on_user_id", using: :btree
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer  "trans_id"
+    t.string   "trans_type"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "transactions", ["trans_type", "trans_id"], name: "index_transactions_on_trans_type_and_trans_id", using: :btree
+  add_index "transactions", ["user_id"], name: "index_transactions_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
