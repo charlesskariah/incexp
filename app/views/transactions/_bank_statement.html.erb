@@ -1,0 +1,22 @@
+<div>
+<%if @transactions.present?%>
+  <table>
+    <tr>
+      <td>Transaction ID</td>
+      <td>Transaction Date:</td>
+      <td>Transaction Amount:</td>
+      <td>Transaction Type</td>
+    <tr>
+    <%@transactions.each do |transaction|%>
+      <tr>
+        <td><%= transaction.id%></td>
+        <td><%= transaction.date.strftime("%d-%b-%y")%></td>
+        <td><%= transaction.trans.amount%></td>
+        <td><%= transaction.trans_type%></td>
+      </tr>
+    <%end%>
+  </table>
+ <% else %>
+ <h3>No transaction found for given period </h3>
+ <%end%>
+</div>

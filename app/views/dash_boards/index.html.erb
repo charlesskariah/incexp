@@ -4,6 +4,10 @@
 
 <h1><%=current_user.name%></h1>
 
+<h3>This month income: Rs.<i><%=@user_monthly_status[:month_income] %></i></h3>
+<h3>This month Expense: Rs.<i><%= @user_monthly_status[:month_expense] %></i></h3>
+<h2>This month status: Rs <i><%= @user_monthly_status[:diff] %></i></h2>
+
 <h3>Income Category</h3>
  <li><%= link_to('Add Income Category',new_income_category_path) %></li>
  <li><%= link_to('View Income Categories', income_categories_path) %></li>
@@ -17,4 +21,12 @@
 
  <h3>Expense</h3>
  <li><%= link_to('Add Expense',new_expense_path) %></li>
+
+  <h3>Expense Filter</h3>
+ <li><%= link_to('Filter Expense',expenses_path) %></li>
+
+ <h3>Bank Statement</h3>
+ <li><%= link_to('Bank Statement',transactions_path) %></li>
+
+
 

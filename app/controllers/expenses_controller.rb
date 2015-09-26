@@ -17,6 +17,18 @@ class ExpensesController < ApplicationController
     end
   end
 
+  def index
+    category_list
+  end
+
+  def search
+    if params[:expense_category_id].present? && params[:From_date].present? && params[:To_date].present?
+     @expenses = Expense.search_by_date_and_category(current_user,params[:expense_category_id], params[:From_date], params[:To_date])
+   elsif params[:expense_category_id].present?
+    puts "charles"
+     @expenses = Expense.search_by_category(current_user, params[:expense_category_id])
+   end
+  end
 
   def category_list
     @categories = current_user.expense_categories

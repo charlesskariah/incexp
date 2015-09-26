@@ -8,7 +8,19 @@ Rails.application.routes.draw do
   resources :expense_categories
 
   resources :incomes
-  resources :expenses
+  resources :expenses do
+    collection do
+      get 'search'
+      post 'search'
+    end
+  end
+
+  resources :transactions do
+    collection do
+      get 'bank_statement'
+      post 'bank_statement'
+    end
+  end
   # You can have the root of your site routed with "root"
   root 'dash_boards#index'
 
