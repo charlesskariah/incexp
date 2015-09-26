@@ -1,10 +1,10 @@
 class Expense < ActiveRecord::Base
 
   belongs_to :user
-  belongs_to :income_category
+  belongs_to :expense_category
   has_many :transactions, as: :trans
 
-  validates :amount, :date, :income_category, :user,  presence: true
+  validates :amount, :date, :expense_category, :user,  presence: true
 
 
 end
