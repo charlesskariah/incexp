@@ -1,0 +1,30 @@
+<h2>Bank Statement</h2>
+
+<h3>*Please select the required type for filtering</h3>
+<%= form_tag bank_statement_transactions_path, :method => 'post', :remote => true, :id => "bank_frm" do |f| %>
+
+     <%= text_field_tag 'From_date',nil, :id => 'from_date',:placeholder => "From Date"%>
+  </div>
+
+    <div>
+     <%= text_field_tag 'To_date',nil, :id => 'to_date',:placeholder => "To Date"%>
+  </div>
+
+
+<div class="pull-left"><%= submit_tag 'Filter', :id => 'filter', :class => "btn btn-success btn-xs", :remote => true %></div>
+<% end %>
+
+<div id ="bank_filter">
+</div>
+
+<script>
+  $(document).ready(function(){
+  $('#from_date').datepicker({
+       dateFormat: 'dd-mm-yy'
+    });
+  $('#to_date').datepicker({
+       dateFormat: 'dd-mm-yy'
+    });
+
+});
+</script>

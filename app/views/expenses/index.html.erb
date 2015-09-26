@@ -1,0 +1,32 @@
+<h2>Filter by expense</h2>
+
+<h3>*Please select the required type for filtering</h3>
+<%= form_tag search_expenses_path, :method => 'post', :remote => true, :id => "reprt_frm" do |f| %>
+
+  <div><%= select_tag 'expense_category_id', options_from_collection_for_select(@categories, "id", "source"), :prompt => "Select Category" %></div>
+  <div>
+     <%= text_field_tag 'From_date',nil, :id => 'from_datee',:placeholder => "From Date"%>
+  </div>
+
+    <div>
+     <%= text_field_tag 'To_date',nil, :id => 'to_datee',:placeholder => "To Date"%>
+  </div>
+
+
+<div class="pull-left"><%= submit_tag 'Filter', :id => 'filter', :class => "btn btn-success btn-xs", :remote => true %></div>
+<% end %>
+
+<div id ="expense_filter">
+</div>
+
+<script>
+  $(document).ready(function(){
+  $('#from_datee').datepicker({
+       dateFormat: 'dd-mm-yy'
+    });
+  $('#to_datee').datepicker({
+       dateFormat: 'dd-mm-yy'
+    });
+
+});
+</script>

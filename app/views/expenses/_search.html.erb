@@ -1,0 +1,16 @@
+<% if @expenses.present?%>
+    <table>
+      <tr>
+        <td>Amount/Rs</td>
+        <td>Date</td>
+      </tr>
+  <% @expenses.each do |expense| %>
+      <tr>
+        <td><%= expense.amount%></td>
+        <td><%= expense.date.strftime("%d-%b-%y")%></td>
+      </tr>
+      </table>
+  <% end %>
+<%else%>
+  <h1>No results found for selected category</h1>
+<%end%>
