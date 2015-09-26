@@ -1,0 +1,68 @@
+<div class = " col-md-12 col-sm-12 col-lg-12">
+     <% if @income.errors.any? %>
+    <div class = "danger">
+      <h2>
+        <%= pluralize(@income.errors.count, "error") %>
+      </h2>
+      <ul>
+        <% @income.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <%if flash[:success].present?%>
+      <div class="alert alert-success fade in fade_alerts">
+        <strong>Success! </strong><%=flash[:success]%>.
+      </div>
+    <%end%>
+</div>
+<div class="container-fluid">
+<%= form_for @income do |f| %>
+
+  <div class = "row row-padding">
+    <div class = "col-md-3 col-sm-6 col-lg-3 col-xs-8" >
+      <label for="fromtime" class="control-label">Amount: </label>
+    </div>
+    <div class = "col-md-4 col-sm-8 col-lg-4 col-xs-10" >
+      <%= f.number_field :amount, {min: 0 ,:step => 0.1,:required => true, :clas => "form-control"} %></td>
+    </div>
+  </div>
+
+  <div class = "row row-padding">
+    <div class = "col-md-3 col-sm-6 col-lg-3 col-xs-8" >
+      <label for="fromtime" class="control-label">Choose Income Category: </label>
+    </div>
+    <div class = "col-md-4 col-sm-8 col-lg-4 col-xs-10" >
+      <%= f.select :income_category_id, options_for_select(@categories.collect { |inc| [inc.source.titleize, inc.id] }, 1), {}, { id: 'inc_select' ,:class => "form-control"} %>
+    </div>
+  </div>
+
+  <div class = "row row-padding">
+    <div class = "col-md-3 col-sm-6 col-lg-3 col-xs-8" >
+      <label for="fromtime" class="control-label">Date: </label>
+    </div>
+    <div class = "col-md-4 col-sm-8 col-lg-4 col-xs-10" >
+      <%= f.text_field :date, :required => true, :id => "income_date", :class => "form-control"%>
+    </div>
+  </div>
+
+
+
+    <div class = "row row-padding">
+    <div class = "col-md-3 col-sm-6 col-lg-3 col-xs-8" >
+    </div>
+    <div class = "col-md-4 col-sm-8 col-lg-4 col-xs-10" >
+       <%=f.submit 'Create Income', :class => ["btn", "btn-info"] , data: {disable_with: "Creating..."}%>
+    </div>
+  </div>
+
+<% end %>
+</div>
+<script>
+  $(document).ready(function(){
+  $('#income_date').datepicker({
+       dateFormat: 'dd-mm-yy'
+    });
+});
+</script>
