@@ -1,3 +1,7 @@
+<div class="page-header">
+  <h1>Add Expenses <small>Please add your expense</small></h1>
+</div>
+
 <div class = " col-md-12 col-sm-12 col-lg-12">
      <% if @expense.errors.any? %>
     <div class = "danger">
@@ -17,49 +21,31 @@
       </div>
     <%end%>
 </div>
-
 <div class="container-fluid">
-<%= form_for @expense do |f| %>
-
-  <div class = "row row-padding">
-    <div class = "col-md-3 col-sm-6 col-lg-3 col-xs-8" >
-      <label for="fromtime" class="control-label">Amount: </label>
+  <%= form_for @expense do |f| %>
+    <div class = "row margin-bottom">
+      <div class = "col-md-3"><label for="fromtime" class="control-label">Amount: </label></div>
+      <div class = "col-md-4"><%= f.number_field :amount, {min: 0 ,:step => 0.1,:required => true, :class => "form-control"} %></div>
+      <div class = "col-md-3"></div>
     </div>
-    <div class = "col-md-4 col-sm-8 col-lg-4 col-xs-10" >
-      <%= f.number_field :amount, {min: 0 ,:step => 0.1,:required => true, :clas => "form-control"} %></td>
+    <div class = "row margin-bottom">
+      <div class = "col-md-3"><label for="fromtime" class="control-label">Expense Category: </label></div>
+      <div class = "col-md-4"><%= f.select :expense_category_id, options_for_select(@categories.collect { |inc| [inc.source.titleize, inc.id] }, 1), {}, { id: 'inc_select' ,:class => "form-control"} %></div>
+      <div class = "col-md-3"> <%= link_to('Add Expense Category',new_expense_category_path, :class=> "btn btn-success" ) %></div>
     </div>
-  </div>
-
-  <div class = "row row-padding">
-    <div class = "col-md-3 col-sm-6 col-lg-3 col-xs-8" >
-      <label for="fromtime" class="control-label">Choose Expense Category: </label>
+    <div class = "row margin-bottom">
+      <div class = "col-md-3"><label for="fromtime" class="control-label">Date: </label></div>
+      <div class = "col-md-4"><%= f.text_field :date, :required => true, :id => "expense_date", :class => "form-control"%></div>
+      <div class = "col-md-3"></div>
     </div>
-    <div class = "col-md-4 col-sm-8 col-lg-4 col-xs-10" >
-      <%= f.select :expense_category_id, options_for_select(@categories.collect { |inc| [inc.source.titleize, inc.id] }, 1), {}, { id: 'inc_select' ,:class => "form-control"} %>
+    <div class = "row margin-bottom">
+      <div class = "col-md-3"></div>
+      <div class = "col-md-4"><%=f.submit 'Create Expense', :class => ["btn", "btn-info"] , data: {disable_with: "Creating..."}%></div>
+      <div class = "col-md-3"></div>
     </div>
-  </div>
-
-  <div class = "row row-padding">
-    <div class = "col-md-3 col-sm-6 col-lg-3 col-xs-8" >
-      <label for="fromtime" class="control-label">Date: </label>
-    </div>
-    <div class = "col-md-4 col-sm-8 col-lg-4 col-xs-10" >
-      <%= f.text_field :date, :required => true, :id => "expense_date", :class => "form-control"%>
-    </div>
-  </div>
-
-
-
-    <div class = "row row-padding">
-    <div class = "col-md-3 col-sm-6 col-lg-3 col-xs-8" >
-    </div>
-    <div class = "col-md-4 col-sm-8 col-lg-4 col-xs-10" >
-       <%=f.submit 'Create Expense', :class => ["btn", "btn-info"] , data: {disable_with: "Creating..."}%>
-    </div>
-  </div>
-
-<% end %>
+  <% end %>
 </div>
+
 <script>
   $(document).ready(function(){
   $('#expense_date').datepicker({
@@ -67,3 +53,4 @@
     });
 });
 </script>
+

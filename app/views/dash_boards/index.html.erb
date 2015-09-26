@@ -1,12 +1,18 @@
-<% if user_signed_in? %>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-  <%end%>
+<div class = "row">
+  <div class = "col-md-4"></div>
+  <div class = "col-md-4"></div>
+  <div class = "col-md-4">
+    <div class="list-group">
+      <a href="#" class="list-group-item active">
+        Current Month Status
+      </a>
+      <a href="#" class="list-group-item list-group-item-success">Income - Rs.<i><%=@user_monthly_status[:month_income] %></i> </a>
+      <a href="#" class="list-group-item list-group-item-danger">Expense - Rs.<i><%=@user_monthly_status[:month_expense] %></i></a>
+      <a href="#" class="list-group-item disabled">Budget Status - Rs.<i><%=@user_monthly_status[:diff] %></i></a>
+    </div>
+  </div>
+</div>
 
-<h1><%=current_user.name%></h1>
-
-<h3>This month income: Rs.<i><%=@user_monthly_status[:month_income] %></i></h3>
-<h3>This month Expense: Rs.<i><%= @user_monthly_status[:month_expense] %></i></h3>
-<h2>This month status: Rs <i><%= @user_monthly_status[:diff] %></i></h2>
 
 <h3>Income Category</h3>
  <li><%= link_to('Add Income Category',new_income_category_path) %></li>
