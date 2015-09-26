@@ -15,4 +15,8 @@ class Expense < ActiveRecord::Base
   user.expense.where("expense_category_id IN (?)",category_id).order('date DESC')
  end
 
+ def self.search_by_date(user,from_date, to_date )
+  user.expense.where("date >= (?) and date <= (?)",from_date.to_date, to_date.to_date).order('date DESC')
+ end
+
 end
