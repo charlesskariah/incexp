@@ -8,8 +8,8 @@ Rails.application.configure do
     {
       :address   => "smtp.mandrillapp.com",
       :port      => 587,
-      :user_name => "charles.skariah@ruby-software.com",
-      :password  => "6JGO1U4b5PqreCwz646c7w",
+      :user_name => ENV["USER_NAME"],
+      :password  => ENV["AUTH_KEY"],
       :authentication => :plain,
       :enable_starttls_auto => true
     }
