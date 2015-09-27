@@ -1,18 +1,23 @@
-<h2>Bank Statement</h2>
-
-<h3>*Please select the required type for filtering</h3>
+<div class="container-fluid" style="background-color: #CEEFD1;">
+<h2>Bank Statement </h2>
 <%= form_tag bank_statement_transactions_path, :method => 'post', :remote => true, :id => "bank_frm" do |f| %>
-
-     <%= text_field_tag 'From_date',nil, :id => 'from_date',:placeholder => "From Date"%>
+  <div class = "row margin-bottom">
+    <div class = "col-md-4">
+      <%= text_field_tag 'From_date',nil, :id => 'from_date',:placeholder => "From Date" ,:class => "form-control" %>
+    </div>
+    <div class = "col-md-4">
+      <%= text_field_tag 'To_date',nil, :id => 'to_date',:placeholder => "To Date", :class => "form-control" %>
+    </div>
+    </div>
+  <div class ="row margin-bottom">
+    <div class = "col-md-4 wng-color">*Please choose the from-date and to-date for bank statement.
+     </div>
+    <div class = "col-md-2"><%= submit_tag 'Filter', :id => 'filter', :class => "btn btn-success", :remote => true %>
+      <input value="Reset" type="reset" id="reset_report" class="btn btn-danger pull-right">
+    </div>
   </div>
-
-    <div>
-     <%= text_field_tag 'To_date',nil, :id => 'to_date',:placeholder => "To Date"%>
-  </div>
-
-
-<div class="pull-left"><%= submit_tag 'Filter', :id => 'filter', :class => "" %></div>
-<% end %>
+  <% end %>
+</div>
 
 <div id ="bank_filter">
 </div>
@@ -28,3 +33,4 @@
 
 });
 </script>
+

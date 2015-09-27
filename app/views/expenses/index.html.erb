@@ -1,21 +1,27 @@
-<h2>Filter by expense</h2>
-
-<h3>*Please select the required type for filtering</h3>
+<div class="container-fluid" style="background-color: #CEEFD1;">
+<h2>Expense Filter</h2>
 <%= form_tag search_expenses_path, :method => 'post', :remote => true, :id => "reprt_frm" do |f| %>
-
-  <div><%= select_tag 'expense_category_id', options_from_collection_for_select(@categories, "id", "source"), :prompt => "Select Category" %></div>
-  <div>
-     <%= text_field_tag 'From_date',nil, :id => 'from_datee',:placeholder => "From Date"%>
+  <div class = "row margin-bottom">
+    <div class = "col-md-4">
+      <%= select_tag 'expense_category_id', options_from_collection_for_select(@categories, "id", "source"), :prompt => "Select Category" , :class => "form-control"%>
+    </div>
+    <div class = "col-md-4">
+      <%= text_field_tag 'From_date',nil, :id => 'from_datee',:placeholder => "From Date", :class => "form-control"%>
+    </div>
+    <div class = "col-md-4">
+      <%= text_field_tag 'To_date',nil, :id => 'to_datee',:placeholder => "To Date", :class => "form-control"%>
+    </div>
   </div>
-
-    <div>
-     <%= text_field_tag 'To_date',nil, :id => 'to_datee',:placeholder => "To Date"%>
+  <div class ="row margin-bottom">
+    <div class = "col-md-8 wng-color">*Please select atleast one category or both the date fields.<br />
+      *Filter works for all combinations of category and date
+     </div>
+    <div class = "col-md-2"><%= submit_tag 'Filter', :id => 'filter', :class => "btn btn-success", :remote => true %>
+      <input value="Reset" type="reset" id="reset_report" class="btn btn-danger pull-right">
+    </div>
   </div>
-
-
-<div class="pull-left"><%= submit_tag 'Filter', :id => 'filter', :class => "btn btn-success btn-xs", :remote => true %></div>
-<% end %>
-
+  <% end %>
+</div>
 <div id ="expense_filter">
 </div>
 

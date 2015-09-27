@@ -5,3 +5,16 @@
 .margin-bottom{
   margin-bottom: 26px;
 }
+
+.forgot{
+  float: right;
+  margin-top: 10px;
+}
+
+.pull-right{
+  float: right;
+}
+
+.wng-color{
+  color:red;
+}

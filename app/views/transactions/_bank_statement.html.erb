@@ -1,22 +1,25 @@
-<div>
 <%if @transactions.present?%>
-  <table>
-    <tr>
-      <td>Transaction ID</td>
-      <td>Transaction Date:</td>
-      <td>Transaction Amount:</td>
-      <td>Transaction Type</td>
+  <table class="table table-bordered table-hover">
+    <tr class = "info">
+      <th>Transaction ID</th>
+      <th>Transaction Date:</th>
+      <th>Transaction Type</th>
+      <th class = "text-right">Transaction Amount:</th>
     <tr>
     <%@transactions.each do |transaction|%>
-      <tr>
+    <%if transaction.trans_type == "Income"%>
+       <% color_row = "success" %>
+    <%else%>
+       <% color_row = "danger" %>
+    <% end %>
+      <tr class = "<%= color_row%>">
         <td><%= transaction.id%></td>
         <td><%= transaction.date.strftime("%d-%b-%y")%></td>
-        <td><%= transaction.trans.amount%></td>
         <td><%= transaction.trans_type%></td>
+        <td class = "text-right"><b><%= transaction.trans.amount%></b></td>
       </tr>
     <%end%>
   </table>
  <% else %>
  <h3>No transaction found for given period </h3>
  <%end%>
-</div>
