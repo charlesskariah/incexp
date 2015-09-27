@@ -1,16 +1,18 @@
 <% if @expenses.present?%>
-    <table>
-      <tr>
-        <td>Amount/Rs</td>
-        <td>Date</td>
+    <table class="table table-bordered table-hover">
+      <tr class="danger">
+        <th>Sl. No</th>
+        <th>Amount/Rs</td>
+        <th>Date of Transaction</td>
       </tr>
-  <% @expenses.each do |expense| %>
-      <tr>
-        <td><%= expense.amount%></td>
-        <td><%= expense.date.strftime("%d-%b-%y")%></td>
-      </tr>
-      </table>
-  <% end %>
+      <% @expenses.each_with_index do | expense, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= expense.amount%></td>
+          <td><%= expense.date.strftime("%d-%b-%y")%></td>
+        </tr>
+      <% end %>
+  </table>
 <%else%>
-  <h1>No results found for selected category</h1>
+  <h2>Sorry!!No results found for selected fields</h2>
 <%end%>

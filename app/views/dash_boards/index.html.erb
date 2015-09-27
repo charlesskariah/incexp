@@ -1,38 +1,37 @@
+  <div style="background-color: #98D89C !important" class="jumbotron">
+    <h1>IncExp</h1>
+      <p>IncExp is an integrated income-expense tracker designed to help you to track your expenses, income. It is easy to understand and the best way to record your financial data. Automatic status of monthly budget.Retrieve all data using our filters</p>
+  </div>
+
 <div class = "row">
-  <div class = "col-md-4"></div>
-  <div class = "col-md-4"></div>
+  <div class = "col-md-4">
+    <div class="thumbnail">
+       <%=image_tag("income.jpg", size: "150x100", alt: "Income") %>
+      <div class="caption">
+        <h3>Income</h3>
+        <p>You can add income based on a date as well as you can specify category.Please make use of the following links to add a new income.Apart from the default categories you can add your own category</p>
+        <p><%= link_to('New Income',new_income_path, :class => "btn btn-primary") %> <%= link_to('New Income Category',new_income_category_path, :class => "btn btn-default") %></p>
+      </div>
+    </div>
+  </div>
+  <div class = "col-md-4">
+    <div class="thumbnail">
+      <%=image_tag("expense.jpg", size: "150x100", alt: "Income") %>
+      <div class="caption">
+        <h3>Expense</h3>
+        <p>You can add expense based on a date as well as you can specify category.Please make use of the following links to add a new expense.Apart from the default categories you can add your own category.Also you can track your expense via filter.</p>
+        <p><%= link_to('New Expense',new_expense_path, :class => "btn btn-primary") %> <%= link_to('New Expense Category',new_expense_category_path, :class => "btn btn-default") %></p>
+      </div>
+    </div>
+  </div>
   <div class = "col-md-4">
     <div class="list-group">
       <a href="#" class="list-group-item active">
         Current Month Status
       </a>
-      <a href="#" class="list-group-item list-group-item-success">Income - Rs.<i><%=@user_monthly_status[:month_income] %></i> </a>
-      <a href="#" class="list-group-item list-group-item-danger">Expense - Rs.<i><%=@user_monthly_status[:month_expense] %></i></a>
-      <a href="#" class="list-group-item disabled">Budget Status - Rs.<i><%=@user_monthly_status[:diff] %></i></a>
+      <a href="#" class="list-group-item list-group-item-success">Total Income - Rs.<i><%=@user_monthly_status[:month_income] %></i> </a>
+      <a href="#" class="list-group-item list-group-item-danger">Total Expense - Rs.<i><%=@user_monthly_status[:month_expense] %></i></a>
+      <a href="#" class="list-group-item disabled">Budget Status - Rs.<i><b><%=@user_monthly_status[:diff] %></b></i></a>
     </div>
   </div>
 </div>
-
-
-<h3>Income Category</h3>
- <li><%= link_to('Add Income Category',new_income_category_path) %></li>
- <li><%= link_to('View Income Categories', income_categories_path) %></li>
-
- <h3>Expense Category</h3>
- <li><%= link_to('Add Expense Category',new_expense_category_path) %></li>
- <li><%= link_to('View Expense Categories', expense_categories_path) %></li>
-
- <h3>Income</h3>
- <li><%= link_to('Add Income',new_income_path) %></li>
-
- <h3>Expense</h3>
- <li><%= link_to('Add Expense',new_expense_path) %></li>
-
-  <h3>Expense Filter</h3>
- <li><%= link_to('Filter Expense',expenses_path) %></li>
-
- <h3>Bank Statement</h3>
- <li><%= link_to('Bank Statement',transactions_path) %></li>
-
-
-
